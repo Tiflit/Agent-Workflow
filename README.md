@@ -18,13 +18,15 @@ By default, the workflow operates with **one active agent** under explicit human
 ## Quickstart: First-Run Adoption in 4 Steps
 
 1. **Copy All Eight Template Documents**:
-   Copy the complete template set (`README.md`, `KERNEL.md`, `REGISTER.md`, `AGENTS.md`, `SECURITY.md`, and `docs/{RECORDS,PROFILES,CLAIMS}.md`) into your repository, or explicitly adapt the policy-derivation command to the subset retained.
-2. **Configure Register & Credentials**:
-   In `REGISTER.md`, configure placeholders for human principal (`<HUMAN_OWNER_ID>`), control channel (`<PRIMARY_CONTROL_CHANNEL>`), verification method (`<CONTROL_AUTHORSHIP_VERIFICATION_METHOD>`), credential relationship / shared-account gaps, approved destinations, and execution profiles.
-3. **Commit & Establish Trusted Checkpoint**:
-   Commit configuration changes to version control. Derive the policy revision hash over the applicable policy files. Record this initial hash, adopted kernel version, approval source, and acquired base revision in a trusted control record (e.g., an attributable human-approved Issue comment) **outside the policy path set**. Do not embed the computed SHA inside policy files.
+   Copy the complete template set (`README.md`, `KERNEL.md`, `REGISTER.md`, `AGENTS.md`, `SECURITY.md`, and `docs/{RECORDS,PROFILES,CLAIMS}.md`) into your repository, or adapt the policy-derivation command to the subset retained.
+2. **Configure Register, Review & Adopt v0.4**:
+   In `REGISTER.md`:
+   - Review and adopt v0.4, updating `Owner Adoption Status` from candidate to adopted before committing policy (this template repository ships unadopted).
+   - Configure placeholders for human principal (`<HUMAN_OWNER_ID>`), control channel (`<PRIMARY_CONTROL_CHANNEL>`), verification method (`<CONTROL_AUTHORSHIP_VERIFICATION_METHOD>`), credential relationship / shared-account gaps, destinations, execution profiles, and a stable `<TRUSTED_CHECKPOINT_RECORD>` locator (e.g., Issue #1 or governance thread outside policy paths).
+3. **Commit Configured Policy & Complete External Record**:
+   Commit configured policy files to version control before task execution. Derive the policy revision hash over the applicable policy files. In the configured external checkpoint record, record this derived SHA, adopted kernel version, approval source, and base revision. Do not edit covered policy files to insert the computed SHA.
 4. **Dispatch First Task**:
-   Dispatch a bounded task contract referencing the trusted checkpoint, base revision, objective, allowed paths, and prohibitions first. If no checkpoint exists, the agent halts and requests its creation before proceeding.
+   Dispatch a bounded task contract referencing the trusted checkpoint record, base revision, objective, allowed paths, and prohibitions first. If no checkpoint exists, agents halt and request its establishment before proceeding.
 
 ## Candidate Limitations
 
