@@ -5,6 +5,7 @@
 ## 1. Task Contract Record (Issue Body / Specification)
 Word budget: `<= 350 words`.
 - **Primary Task Reference**: `#<ISSUE_NUMBER>`
+- **Objective**: Functional task goal, acceptance criteria, and operational bounds.
 - **Assigned Owner & Branch**: Assigned agent role (`<AGENT_ROLE>`) and target branch (`<TARGET_BRANCH>`).
 - **Human Approval Evidence**: Attributable human approval record or direct thread link.
 - **Base Revision**: Full commit SHA of the starting baseline.
@@ -13,7 +14,7 @@ Word budget: `<= 350 words`.
   - Tracked Paths: Explicit list of allowed files and directories.
   - Permitted Environment & Effects: Permitted host/cloud profiles, tools, and side effects.
   - Prohibitions First: Specific forbidden actions (e.g., no tests, no push to main).
-- **Acceptance Criteria & Evidence**: Observable criteria and required acceptance evidence.
+- **Required Acceptance Evidence**: Observable criteria and required evidence type (inspected or executed).
 
 ## 2. Dispatch Activation Format (Comment)
 Word budget: `<= 150 words`.
@@ -32,10 +33,12 @@ Base-Revision: <BASE_COMMIT_SHA>
 Done: <Summary of completed steps in this commit>
 Next: <Specific concrete next step, or omitted if awaiting direction>
 Unresolved: <Known blockers, material uncertainties, or pending decisions>
-Verified-Revision: <Commit SHA | Outcome Label | 'Unverified'>
+Verified-Revision: <COMMIT_SHA | 'Unverified'>
+Evidence-Type: <Executed | Inspected | Unavailable>
+Evidence-Outcome: <Pass | Fail | AttentionRequired | None>
 ```
 
-- **Verified Revision Evidence**: May record executed test outcomes or inspected acceptance evidence (e.g., verified documentation links and budgets). State the evidence type and outcome explicitly.
+- **Verified Revision & Evidence**: `Verified-Revision` records only a verified commit SHA or `Unverified`. The associated `Evidence-Type` (executed vs. inspected) and `Evidence-Outcome` record verification nature and result (e.g., executed tests or inspected document links/budgets).
 - **Local vs. Pushed Durability**: Local commits survive conversation loss on intact storage; pushing adds remote durability. Neither guarantees recovery from arbitrary hardware loss.
 - **Natural Checkpoint Boundaries**: Commit and checkpoint at logical unit completions or upon approaching context limits.
 

@@ -6,8 +6,8 @@
 
 To bootstrap safely without impossible prerequisites, agents perform only the minimum reads necessary to acquire governing instructions:
 1. **Governing Contract**: Acquire the dispatch message and referenced task contract. **Critical prohibitions must be listed first**.
-2. **Authority & Prerequisites**: Verify principal, agent identity, approved processing destinations, and applicable policy from [`REGISTER.md`](REGISTER.md). Load specific register entries by guarantee/boundary as relevant to the task.
-3. **Kernel Invariants**: Comply with [`KERNEL.md`](KERNEL.md) K1–K7.
+2. **Read the Kernel Each Session**: Load and read [`KERNEL.md`](KERNEL.md) directly at session startup; its K1–K7 invariants are mandatory.
+3. **Register Retrieval & Policy Comparison**: Retrieve bounded entries from [`REGISTER.md`](REGISTER.md) (principal, identity, destinations, execution profiles). Compare adopted kernel version and policy revision with a trusted prior checkpoint; refresh affected guidance when changed, missing, or divergent. Keep task and external permission drift checks separate.
 
 ## 2. Session Orientation
 

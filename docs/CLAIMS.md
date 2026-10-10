@@ -6,16 +6,17 @@
 
 | Dimension | Shown (Directly Inspected) | Reported (Human / Agent Relayed) | Not Shown (Unverified / Unknown) |
 | :--- | :--- | :--- | :--- |
-| **Pushed State & Checkpoints** | Remote commits, diffs, CI logs, GitHub records. | Antigravity local worktree listings and freshness status. | Arbitrary machine-failure recovery; bare-repo recovery without clean base. |
+| **Pushed Checkpoints** | Remote commits, diffs, CI logs, GitHub records. | Antigravity local-listing deviation and file freshness status. | Arbitrary machine-failure recovery; bare-repo recovery without clean base. |
 | **Same-Vendor Recovery** | Pushed trial commits reconciled after conversation reset. | Retained local artifacts enabled recovery; procedure deviations occurred. | Independent verification without local worktree files. |
-| **Cross-Vendor Recovery** | Stale `Next:` trailer and Section 2 conflict identified in pushed commits. | Fresh agent lacked GitHub posting tools; findings human-relayed; start timing missing. | Automated multi-vendor failover; unassisted platform writes; token efficiency. |
+| **Cross-Vendor Recovery** | Pushed commits contained stale `Next:` trailer and Section 2 conflict. | Agent recognition of stale trailer; findings human-relayed; start timing missing. | Automated multi-vendor failover; unassisted platform writes; token efficiency. |
 | **Policy Governance** | Task boundaries and human hold events recorded in threads. | Cooperative compliance observed; occasional deviations required correction. | Hardware/OS sandboxing; technical non-bypassable enforcement. |
 
 ## 2. Empirical Reference Findings
 
 Reference trials established critical empirical limits:
-- **Relayed Evidence**: Fresh cross-vendor reconstruction used a read-only agent whose output was manually relayed by the operator; initial acquisition timing was unrecorded.
-- **No Blanket Compliance**: Written rules reduce errors but do not guarantee strict compliance; deviations occurred across runs.
+- **Cross-Vendor Trial**: Reconstruction used an online agent lacking GitHub posting tools with memory caveats; findings were human-relayed, leaving acquisition timing unrecorded.
+- **Local Deviation**: An extra background launch/listing in Antigravity deviated from instructions before correction.
+- **No Blanket Compliance**: Written rules do not guarantee compliance; deviations occurred across runs.
 - **Withheld Claims**: We make no general claim of cross-vendor parity, automated recovery, or token efficiency.
 
 ## 3. Standard Operational Metrics
@@ -23,4 +24,4 @@ Reference trials established critical empirical limits:
 Track metrics prospectively without retroactive reconstruction:
 - **Dispatch Count**: Distinct activation messages directing an agent's turn.
 - **Human Interventions**: Manual operator actions (*link relay*, *approval*, *clarification*, *manual repair*).
-- **Task-Level Latency**: Elapsed time from first acknowledged task acquisition to first accepted reconstruction (including human pauses). Unrecorded timestamps remain **Unknown**.
+- **Task-Level Latency**: Elapsed time from acknowledged acquisition to accepted reconstruction (including pauses). Unrecorded timestamps remain **Unknown**.

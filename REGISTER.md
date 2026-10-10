@@ -8,10 +8,10 @@
 | :--- | :--- | :--- |
 | **Candidate Kernel Version** | `v0.4` | Invariant normative rules from `KERNEL.md`. |
 | **Owner Adoption Status** | `Candidate (Unadopted)` | Explicit human adoption state; unadopted templates do not override project rules. |
-| **Applicable Policy Revision** | `git log -1 --format=%H <ACQUIRED_REV> -- KERNEL.md REGISTER.md AGENTS.md docs/PROFILES.md SECURITY.md` | Latest commit touching policy files at acquired revision, compared against trusted checkpoint; external permission drift tracked separately. |
+| **Applicable Policy Revision** | `git log -1 --format=%H <ACQUIRED_REV> -- README.md KERNEL.md REGISTER.md AGENTS.md SECURITY.md docs/RECORDS.md docs/PROFILES.md docs/CLAIMS.md` | Latest commit touching all eight policy/guidance files at acquired revision, compared against trusted checkpoint; external permission drift tracked separately. |
 | **Human Principal** | `<HUMAN_OWNER_ID>` | Authorized human owner retaining ultimate approval and merge authority. |
 | **Authorized Control Channel** | `<PRIMARY_CONTROL_CHANNEL>` | Official medium for task dispatch (e.g., repository Issue thread, terminal). |
-| **Origin Verification** | `<APPROVED_ORIGIN_URL>` | Verified remote repository endpoint for push and PR operations. |
+| **Control Authorship Verification** | `<CONTROL_AUTHORSHIP_VERIFICATION_METHOD>` | Method for verifying authorization origin, identity, and scope. |
 | **Credential Relationship** | `<CREDENTIAL_RELATIONSHIP>` | Declared identity relation (e.g., shared developer token vs. distinct agent bot). |
 | **Session / Cost Ceiling** | `<SESSION_COST_OR_TOKEN_LIMIT>` | Developer-configured resource ceiling (or 'Unmetered/Unavailable'). |
 
@@ -27,12 +27,12 @@
 
 ## 3. Kernel Guarantee Realization & Disclosures (K1–K7)
 
-Starter defaults are labeled cooperative; technical controls remain unvalidated unless verified on the host.
+Starter defaults are labeled cooperative; technical controls remain unvalidated unless verified locally or in hosted environments.
 
 | Guarantee | Declared Mechanism | Technical Status | Disclosed Gaps / Limitations |
 | :--- | :--- | :--- | :--- |
-| **K1 (Scope & Execution)** | Contract limits & human review | Cooperative (Unvalidated) | No OS sandbox isolates filesystem access; compliance relies on prompt boundaries. |
-| **K2 (Sensitive Information)** | Privacy patterns & destination rules | Cooperative (Unvalidated) | Network egress is unmonitored by local proxies; outbound data depends on agent discipline. |
+| **K1 (Scope & Execution)** | Contract limits & human review | Cooperative (Unvalidated) | Filesystem isolation is unvalidated; worktrees do not establish process isolation; compliance is cooperative. |
+| **K2 (Sensitive Information)** | Privacy patterns & destination rules | Cooperative (Unvalidated) | Egress monitoring and network filtering are unvalidated; outbound data protection relies on agent discipline. |
 | **K3 (Truthful Evidence)** | Explicit evidence labeling (executed / inspected / reported / unavailable) | Cooperative | Uninspected claims are blocked by review; no automatic truth-enforcement probe exists. |
 | **K4 (History Preservation)** | Non-destructive git commits & worktrees | Cooperative | Unpushed local commits remain vulnerable to disk loss; durability requires remote push. |
 | **K5 (Untrusted Content)** | External inputs treated as data | Cooperative | Indirect prompt injection defense is prompt-level; parser does not cryptographically isolate text. |
