@@ -25,7 +25,7 @@ Word budget: `<= 150 words`.
 - **Bounded Objective**: Specific deliverable authorized for this turn.
 
 ## 3. Git Checkpoint Trailers (Commit Message)
-Trailers record operational context in commit messages. Trailers are informative records, never self-granted permissions.
+Trailers record point-in-time operational context at the commit date; recovering agents must reconcile trailers against actual head diffs rather than treating earlier trailers as current permissions.
 
 ```text
 Task-Contract: #<ISSUE_NUMBER>
@@ -34,11 +34,11 @@ Done: <Summary of completed steps in this commit>
 Next: <Specific concrete next step, or omitted if awaiting direction>
 Unresolved: <Known blockers, material uncertainties, or pending decisions>
 Verified-Revision: <COMMIT_SHA | 'Unverified'>
-Evidence-Type: <Executed | Inspected | Unavailable>
+Evidence-Type: <Executed | Inspected | Unavailable | None>
 Evidence-Outcome: <Pass | Fail | AttentionRequired | None>
 ```
 
-- **Verified Revision & Evidence**: `Verified-Revision` records only a verified commit SHA or `Unverified`. The associated `Evidence-Type` (executed vs. inspected) and `Evidence-Outcome` record verification nature and result (e.g., executed tests or inspected document links/budgets).
+- **Verified Revision & Point-in-Time Evidence**: `Verified-Revision` records only a verified commit SHA or `Unverified`. When `Unverified`, associated fields record `None` or `Unavailable` if uninspected, or actual inspected/executed findings without implying the head is verified.
 - **Local vs. Pushed Durability**: Local commits survive conversation loss on intact storage; pushing adds remote durability. Neither guarantees recovery from arbitrary hardware loss.
 - **Natural Checkpoint Boundaries**: Commit and checkpoint at logical unit completions or upon approaching context limits.
 
