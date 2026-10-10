@@ -4,25 +4,25 @@
 
 ## 1. Profile 1: Lightweight Manual Default (Single Agent)
 
-- **Execution Model**: One agent, one human developer.
+- **Execution Model**: Single agent operating under direct human supervision.
 - **Workflow**: The human issues discrete task contracts via chat or issues. The agent prepares files and checkpoints in an isolated worktree. The human reviews diffs and executes or authorizes tests and git pushes.
-- **Best For**: Daily feature development, refactoring, and single-developer workflows.
+- **Branch Ownership**: Single-writer branch ownership ensures linear, predictable progress.
 
 ## 2. Profile 2: Gated Multi-Agent Mode (Turn-Based Peer Review)
 
 - **Execution Model**: Primary author agent and independent reviewer agent(s).
-- **Coordination**: Strictly sequential and turn-based; concurrent uncoordinated edits on shared branches are prohibited.
-- **Authority**: Reviewer agents inspect diffs and provide feedback; they do not author code or self-approve integration.
+- **Coordination**: Turn-based sequential execution. Independent concurrent tasks may proceed on separate feature branches; shared branches require explicit handoffs.
+- **Role Boundaries**: Author and reviewer roles are deployment choices; reviewer code-writing limits are project-defined policies rather than universal prohibitions.
 
 ## 3. Profile 3: Explicit Human-Relay Variant (Read-Only Reviewers)
 
 When an agent operates in a read-only environment or lacks direct GitHub platform credentials:
-- **Capability Check at Acquisition**: Agents must verify available tools upon startup. If external posting tools are missing or fail, the agent MUST STOP and output its report to the operator rather than attempting unauthorized credential workarounds.
-- **Human-Relayed Evidence**: The human operator manually copies and relays prompts and review findings between platforms.
-- **Attribution & Timing**: Relayed findings must be explicitly attributed as operator-relayed text. Late acknowledgment publication after manual relay does not retroactively adjust task start or elapsed timing.
+- **Capability Check & Stopping**: Agents check tool capabilities upon acquisition. If platform posting tools fail or are unavailable, the agent MUST STOP and output its report to the operator rather than attempting unauthorized credential workarounds.
+- **Explicit Route**: The human operator manually copies prompts and relays review findings across platforms via an explicitly selected route.
+- **Attribution & Timing**: Relayed findings must be attributed as operator-relayed text. Subsequent acknowledgment publication cannot retroactively establish an agent start time.
 
-## 4. Context & Memory Boundary Disclosures
+## 4. Session Memory & Context Disclosures
 
-- **Fresh Session Amnesia**: Fresh agent sessions start with clean conversation contexts and lack internal memory of prior interactions.
-- **Durable Pointers**: Agents must rely exclusively on committed git history, remote issues, and structured records rather than ephemeral chat memory.
-- **Compaction & Truncation**: When agent contexts exceed model limits, history is lossy; all decisions and progress must be saved to durable repository records before truncation occurs.
+- **Memory Disclosure**: A fresh conversation does not guarantee the complete absence of IDE, account, or persistent system memory. Deployments must disclose or disable memory where feasible, or qualify findings accordingly.
+- **Cache vs. Authority**: Durable repository records and remote commits remain the sole authoritative source of truth. Ephemeral session memory serves as an operational cache, not forbidden context.
+- **Checkpointing**: Checkpoint at natural milestones and known quota warnings; unforeseen context compaction or abrupt session termination cannot always be anticipated.

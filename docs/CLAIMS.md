@@ -1,27 +1,26 @@
-# Evidentiary Claims Boundaries & Empirical Limits
+# Evidentiary Claims & Empirical Limits
 
-> **Status:** Candidate claims register (v0.1 draft). Defines demonstrated vs. unverified workflow properties under [`KERNEL.md`](../KERNEL.md).
+> **Status:** Candidate claims register (v0.1 draft). Demonstrated vs. reported properties under [`KERNEL.md`](../KERNEL.md).
 
 ## 1. Evidentiary Boundary Matrix
 
-| Capability Dimension | Shown (Directly Evidenced) | Reported (Human / Agent Reported) | Not Shown (Unverified / Unknown) |
+| Dimension | Shown (Directly Inspected) | Reported (Human / Agent Relayed) | Not Shown (Unverified / Unknown) |
 | :--- | :--- | :--- | :--- |
-| **Same-Vendor Session Recovery** | Local artifact inspection succeeded after conversation reset. | Procedure deviations occurred; retained local worktrees enabled reconstruction. | Recovery without local artifacts; general crash/loss recovery. |
-| **Cross-Vendor Recovery Trial** | Fresh agent correctly identified stale `Next:` trailer from remote commits. | Agent GitHub write failed; analysis was manually relayed by human operator. | Unassisted remote posting; automated multi-vendor failover; token efficiency. |
-| **Safety & Policy Enforcement** | Agents halted upon written scope limits and explicit human holds. | Cooperative compliance observed across multiple structured tasks. | Operating-system technical sandboxing; non-bypassable policy enforcement. |
+| **Pushed State & Checkpoints** | Remote commits, diffs, CI logs, GitHub records. | Antigravity local worktree listings and freshness status. | Arbitrary machine-failure recovery; bare-repo recovery without clean base. |
+| **Same-Vendor Recovery** | Pushed trial commits reconciled after conversation reset. | Retained local artifacts enabled recovery; procedure deviations occurred. | Independent verification without local worktree files. |
+| **Cross-Vendor Recovery** | Stale `Next:` trailer and Section 2 conflict identified in pushed commits. | Fresh agent lacked GitHub posting tools; findings human-relayed; start timing missing. | Automated multi-vendor failover; unassisted platform writes; token efficiency. |
+| **Policy Governance** | Task boundaries and human hold events recorded in threads. | Cooperative compliance observed; occasional deviations required correction. | Hardware/OS sandboxing; technical non-bypassable enforcement. |
 
-## 2. Empirical Trial Caveats
+## 2. Empirical Reference Findings
 
-Recent trials in reference deployments demonstrated important boundary limits:
-- **Same-Vendor Recovery**: Depended heavily on retained local files and worktree artifacts; did not prove bare-repository recovery.
-- **Cross-Vendor Reconstruction**: Fresh cross-vendor agent correctly spotted stale trailers and material uncertainties, but lacked automated platform posting privileges; report timing was unrecorded.
-- **General Claims Withheld**: We make **no general claim** of vendor neutrality, arbitrary machine-failure recovery, token efficiency, or technical policy enforcement.
+Reference trials established critical empirical limits:
+- **Relayed Evidence**: Fresh cross-vendor reconstruction used a read-only agent whose output was manually relayed by the operator; initial acquisition timing was unrecorded.
+- **No Blanket Compliance**: Written rules reduce errors but do not guarantee strict compliance; deviations occurred across runs.
+- **Withheld Claims**: We make no general claim of cross-vendor parity, automated recovery, or token efficiency.
 
 ## 3. Standard Operational Metrics
 
-To maintain truthful measurement, track metrics prospectively:
-- **Dispatch Count**: Distinct activation messages directing an agent's next action.
-- **Human Interventions**: Count of manual operator actions (classified as: link relay, approval, clarification, or manual fix).
-- **Task-Level Time**: Elapsed time from initial task acquisition to verified completion.
-
-Metrics not captured contemporaneously remain explicitly labeled as **Unknown**.
+Track metrics prospectively without retroactive reconstruction:
+- **Dispatch Count**: Distinct activation messages directing an agent's turn.
+- **Human Interventions**: Manual operator actions (*link relay*, *approval*, *clarification*, *manual repair*).
+- **Task-Level Latency**: Elapsed time from first acknowledged task acquisition to first accepted reconstruction (including human pauses). Unrecorded timestamps remain **Unknown**.

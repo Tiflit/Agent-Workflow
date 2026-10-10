@@ -10,22 +10,22 @@ By default, the workflow operates with **one active agent** under explicit human
 
 ## Core Principles
 
-1. **Human Governance First**: Agents prepare changes, inspect artifacts, and propose bounded actions. Consequential changes (git pushes, PR merges, test execution) require human authorization.
-2. **Advance Test Authorization**: Local test suites, runtime application launches, or desktop/hardware interactions **always require explicit, advance human authorization** defining allowed commands, targets, and disruption bounds. Tests are never run implicitly or unattended.
+1. **Human Governance First**: Agents prepare changes, inspect artifacts, and propose bounded actions. Consequential changes (git pushes, PR merges, deployment) require human authorization. Unattended consequential actions are prohibited under the manual preset.
+2. **Advance Host Test Authorization**: Local test suites, runtime application launches, debugger sessions, or desktop/hardware interactions **always require explicit, advance human authorization** defining allowed commands, targets, and disruption bounds. Cloud or CI execution proceeds under declared environment profiles.
 3. **Approval vs. Reporting**: Policy approval (what actions are permitted) is strictly separated from reporting cadence (how frequently status is communicated). Passing checks or progress notes never confer self-granted permissions.
-4. **Truthful Evidence**: Only distinguish directly observed evidence from reported claims. Unexecuted tests or unavailable data remain explicitly labeled as unverified or unavailable.
+4. **Truthful Evidence**: Explicitly distinguish evidence types: *executed*, *inspected*, *reported*, and *unavailable*. Unexecuted tests or uninspected data remain explicitly labeled.
 
 ## Quickstart: Manual Startup in 4 Steps
 
 1. **Clone & Initialize**:
    Clone this repository into your project or copy its workflow documents (`KERNEL.md`, `REGISTER.md`, `AGENTS.md`, and `docs/`).
 2. **Configure Register (`REGISTER.md`)**:
-   Fill in placeholders for the human owner (`<OWNER_HANDLE>`), authorized control channels (e.g., GitHub Issues), approved processing destinations, and scope bounds.
+   Configure placeholders for the human principal (`<HUMAN_OWNER_ID>`), authorized control channels (e.g., repository Issue thread), approved processing destinations, and execution profiles.
 3. **Dispatch First Task**:
    Create a bounded task (e.g., in an Issue or task contract) with:
    - Prohibitions stated first.
-   - Authoritative task contract link and base commit SHA.
-   - Objective, allowed file paths, and stopping criteria.
+   - Authoritative task contract link, human approval link, and base commit SHA.
+   - Objective, allowed file paths, permitted environment effects, and stopping criteria.
 4. **Review & Iterate**:
    Review agent-submitted diffs, verify trails against [`docs/RECORDS.md`](docs/RECORDS.md), and conduct human verification before approving integration.
 
@@ -37,7 +37,7 @@ By default, the workflow operates with **one active agent** under explicit human
   - Review of privacy disclosures regarding model providers.
 - **Candidate Limitations**:
   - This repository provides documentation templates only; it contains no automated CI enforcement or autonomous supervisor scripts.
-  - Multi-agent coordination requires strict turn-taking and explicit human relays (see [`docs/PROFILES.md`](docs/PROFILES.md)).
+  - Gated multi-agent peer review is optional; read-only reviewers may use an explicit human-relay variant (see [`docs/PROFILES.md`](docs/PROFILES.md)).
   - Usability on arbitrary external projects is untested; users must adapt paths and checklists to their specific toolchain.
 
 ## Document Index
