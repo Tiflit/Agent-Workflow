@@ -83,41 +83,63 @@ $policySha = git -C "<PROJECT_ROOT>" log -1 --format=%H HEAD -- README.md KERNEL
 In Windows PowerShell, inlining multi-line Markdown into CLI arguments (`gh issue comment --body "..."`) risks string interpolation errors, escape-backslash leakage, and ASCII control character insertion (e.g., U+000B vertical tabs).
 
 To avoid string-escaping corruption:
-1. Write the checkpoint content to a literal UTF-8 Markdown staging file outside the tracked Git repository (`<STAGING_DIR>/checkpoint-evidence.md`).
-2. Include concrete adoption parameters in the draft:
+1. Define the checkpoint content using a single-quoted here-string (`@' ... '@`) so text containing PowerShell syntax or backticks is not interpolated. Replace placeholders explicitly before writing:
 
 ```powershell
-# Write literal UTF-8 checkpoint draft without BOM (PowerShell 5.1 and 7+ compatible)
-$draftContent = @"
+# Define template with single-quoted here-string to prevent interpolation
+$draftTemplate = @'
 ## Checkpoint — v0.4 Adoption Record
 - **Adopted Kernel**: v0.4
 - **Policy SHA**: <POLICY_SHA>
 - **Base Revision**: <BASE_REV>
 - **Approval Pointer**: <APPROVAL_RECORD_URL>
 - **Attribution**: <HUMAN_OWNER_ID> (human) / shared-credential gap declared.
-"@
-# Replace placeholders before writing
-[System.IO.File]::WriteAllText("<STAGING_DIR>/checkpoint-evidence.md", $draftContent, [System.Text.UTF8Encoding]::new($false))
+'@
+
+# Explicitly replace placeholders
+$draftText = $draftTemplate.Replace('<POLICY_SHA>', $policySha)`
+    .Replace('<BASE_REV>', $baseRev)`
+    .Replace('<APPROVAL_RECORD_URL>', $approvalUrl)`
+    .Replace('<HUMAN_OWNER_ID>', $ownerId)
+
+# Write literal UTF-8 file without BOM outside tracked repo (PowerShell 5.1 and 7+ compatible)
+[System.IO.File]::WriteAllText("<STAGING_DIR>/checkpoint-evidence.md", $draftText, [System.Text.UTF8Encoding]::new($false))
 ```
 
-3. Publish using the `--body-file` parameter:
+2. Publish using the `--body-file` parameter:
 
 ```powershell
 # Publish checkpoint using literal UTF-8 file and capture URL
-$commentUrl = gh issue comment <ISSUE_NUM> --repo <OWNER>/<REPO> --body-file "<STAGING_DIR>/checkpoint-evidence.md"
+$commentUrl = (gh issue comment <ISSUE_NUM> --repo <OWNER>/<REPO> --body-file "<STAGING_DIR>/checkpoint-evidence.md").Trim()
 ```
 
-4. Read back the specific posted comment by its ID and compare the fetched text to the draft:
+3. Extract and validate the numeric comment ID from the returned URL:
 
 ```powershell
-# Extract comment ID from URL and fetch the exact comment body
-$commentId = $commentUrl.Trim().Split('/')[-1].Replace('#issuecomment-', '')
-$fetchedBody = (gh api "repos/<OWNER>/<REPO>/issues/comments/$commentId" --jq ".body") -join "`n"
-$draftText = [System.IO.File]::ReadAllText("<STAGING_DIR>/checkpoint-evidence.md", [System.Text.Encoding]::UTF8)
+# Extract and validate the numeric fragment; stop on malformed URL
+if ($commentUrl -match '#issuecomment-(\d+)$') {
+    $commentId = $Matches[1]
+} else {
+    Write-Error "Malformed comment URL returned: '$commentUrl'. Stop: cannot verify publication."
+    return
+}
+```
 
-# Verify exact match; preserve any discrepancy in evidence records rather than rewriting history
-if ($fetchedBody -ne $draftText) {
-    Write-Warning "Publication discrepancy detected: fetched comment does not match local draft."
+4. Fetch the specific posted comment JSON, decode it, and compare `.body` to the local draft using ordinal, case-sensitive equality:
+
+```powershell
+# Fetch specific comment JSON and decode via ConvertFrom-Json
+$commentJson = gh api "repos/<OWNER>/<REPO>/issues/comments/$commentId" | ConvertFrom-Json
+if (-not $commentJson -or -not $commentJson.body) {
+    Write-Error "Failed to retrieve comment $commentId from API. Stop: cannot verify publication."
+    return
+}
+
+# Compare body using ordinal case-sensitive equality (PowerShell -ne is case-insensitive)
+$isMatch = [string]::Equals($commentJson.body, $draftText, [System.StringComparison]::Ordinal)
+if (-not $isMatch) {
+    Write-Error "Publication mismatch detected: fetched comment does not match local draft under ordinal comparison. Stop dependent dispatch; preserve discrepancy in evidence records."
+    return
 }
 ```
 
