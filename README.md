@@ -17,6 +17,8 @@ By default, the workflow operates with **one active agent** under explicit human
 
 ## Quickstart: First-Run Adoption in 4 Steps
 
+For a detailed step-by-step guide on Windows PowerShell, see [`docs/WINDOWS-FIRST-RUN.md`](docs/WINDOWS-FIRST-RUN.md).
+
 1. **Copy All Eight Template Documents**:
    Copy the complete template set (`README.md`, `KERNEL.md`, `REGISTER.md`, `AGENTS.md`, `SECURITY.md`, and `docs/{RECORDS,PROFILES,CLAIMS}.md`) into your repository, or adapt the policy-derivation command to the subset retained.
 2. **Configure Register, Review & Adopt v0.4**:
@@ -32,13 +34,14 @@ By default, the workflow operates with **one active agent** under explicit human
 
 - Provides documentation templates only; contains no automated CI enforcement or autonomous supervisor scripts.
 - Multi-agent peer review is optional; read-only reviewers may use an explicit human-relay variant (see [`docs/PROFILES.md`](docs/PROFILES.md)).
-- Usability on arbitrary external projects is untested; users must adapt paths and checklists.
+- Usability on arbitrary external projects is largely untested; users must adapt paths and checklists. Initial Windows onboarding and a single-file documentation task were demonstrated in an assisted usability trial ([Issue #3](https://github.com/Tiflit/Agent-Workflow/issues/3#issuecomment-6103291947); see [`docs/WINDOWS-FIRST-RUN.md`](docs/WINDOWS-FIRST-RUN.md)). Unassisted clone-and-start usability, automated enforcement, and arbitrary project portability remain untested.
 
 ## Document Index
 
 - [`KERNEL.md`](KERNEL.md): Invariant normative guarantees (v0.4).
 - [`REGISTER.md`](REGISTER.md): Deployment settings, identities, and boundaries.
 - [`AGENTS.md`](AGENTS.md): Operational orientation and dispatch protocols.
+- [`docs/WINDOWS-FIRST-RUN.md`](docs/WINDOWS-FIRST-RUN.md): Step-by-step Windows onboarding recipe and publication practices.
 - [`docs/RECORDS.md`](docs/RECORDS.md): Schemas for contracts, checkpoints, and reviews.
 - [`docs/CLAIMS.md`](docs/CLAIMS.md): Evidentiary claims boundaries and reference limits.
 - [`docs/PROFILES.md`](docs/PROFILES.md): Operational modes (Manual Default vs. Multi-Agent Relay).
