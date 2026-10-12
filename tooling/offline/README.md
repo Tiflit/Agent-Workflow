@@ -6,7 +6,7 @@
 
 ## 1. Overview & Contents
 
-This toolkit provides local, offline utilities for validating task contracts and generating compact role-bound handoff previews without network access, credentials, writes, or host state mutations:
+This toolkit provides local, offline utilities for validating task contracts and generating compact role-bound handoff previews. Tools are designed for read-only execution without network access, credentials, or file writes. Verified behavior is bounded by source inspection and enumerated synthetic test suites (patched I/O calls and recursive directory hash invariance); this is an application-level design and runtime intent, not operating system process or filesystem isolation:
 
 - **`preflight_check.py`**: Operator-invoked scope and PR hygiene preflight. Validates an Issue contract description, Pull Request body text, and a JSON manifest of changed files against defined task boundaries.
 - **`preview_role_handoff.py`**: Operator-invoked role handoff preview generator. Consumes an existing handoff snapshot JSON file and formats a bounded, role-specific summary (<=180 words) for `implementer`, `coordinator`, or `reviewer`.
@@ -116,9 +116,9 @@ python tooling/offline/preflight_check.py \
   "pr_state": "OPEN",
   "pr_merged": false,
   "primary_issue_state": "OPEN",
-  "live_pr_head_sha": "c700fcd16091e946246694565d1a5f55fdd3ad1e",
-  "live_pr_base_sha": "3c231c1ab67c2b94b7aef76c536e8ca83a5810f3",
-  "live_default_branch_sha": "91d72bc015559b2268abb7b9b3a033c9f63bad05"
+  "live_pr_head_sha": "1111111111111111111111111111111111111111",
+  "live_pr_base_sha": "2222222222222222222222222222222222222222",
+  "live_default_branch_sha": "3333333333333333333333333333333333333333"
 }
 ```
 
@@ -142,4 +142,5 @@ python tooling/offline/preview_role_handoff.py \
 - The preflight check performs local syntactic and path matching only. It does not certify code correctness, build status, test pass rates, or repository branch rules.
 - The role handoff preview renders a historical snapshot; it does not query live GitHub state, branch heads, or PR reviews.
 - Closed or merged tasks always emit inactive status notices and instruct agents to stop immediately without code execution or implementation restarts.
+- **Not Operating-System Isolation:** Tools do not provide process confinement, operating-system sandboxing, or filesystem isolation. Verified non-mutation behavior reflects runtime intent, intercepted mock boundaries, and recursive regular-file path/hash invariance in clean temporary test directories. Test guards do not cover untested flags (such as standalone `O_TRUNC`) or general environment isolation.
 - Use of this toolkit is entirely opt-in and does not alter the candidate/unadopted status of the surrounding workflow template.

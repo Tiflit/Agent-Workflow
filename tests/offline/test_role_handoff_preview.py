@@ -13,7 +13,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
-REPO_ROOT = Path(__file__).resolve().parent.parent
+REPO_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO_ROOT / "tooling" / "offline"))
 
 import preview_role_handoff
@@ -38,11 +38,11 @@ def make_valid_snapshot() -> dict:
         "pr_title": "[AI] Add read-only operator-invoked scope and PR hygiene preflight",
         "pr_state": "OPEN",
         "pr_merged": False,
-        "live_pr_head_sha": "c700fcd16091e946246694565d1a5f55fdd3ad1e",
-        "live_pr_base_sha": "3c231c1ab67c2b94b7aef76c536e8ca83a5810f3",
+        "live_pr_head_sha": "1111111111111111111111111111111111111111",
+        "live_pr_base_sha": "2222222222222222222222222222222222222222",
         "pr_base_ref": "main",
         "repo_default_branch": "main",
-        "live_default_branch_sha": "91d72bc015559b2268abb7b9b3a033c9f63bad05",
+        "live_default_branch_sha": "3333333333333333333333333333333333333333",
         "base_sync_status": "synced",
         "base_has_moved": False,
         "primary_issue_number": 10,
@@ -56,7 +56,7 @@ def make_valid_snapshot() -> dict:
         },
         "local_workspace": {
             "branch": "feat/sample-feature",
-            "head_sha": "c700fcd16091e946246694565d1a5f55fdd3ad1e",
+            "head_sha": "1111111111111111111111111111111111111111",
             "status": "clean",
             "is_git": True,
         },
@@ -64,10 +64,10 @@ def make_valid_snapshot() -> dict:
             "triggering_run_id": 12345678,
             "workflow_name": "Build and Test",
             "conclusion": "SUCCESS",
-            "tested_head_sha": "c700fcd16091e946246694565d1a5f55fdd3ad1e",
+            "tested_head_sha": "1111111111111111111111111111111111111111",
             "provenance_match": True,
-            "workflow_tests_passed": 240,
-            "build_tests_passed": 378,
+            "workflow_tests_passed": 10,
+            "build_tests_passed": 20,
         },
         "review_records": [],
         "next_ownership": {
@@ -127,7 +127,7 @@ class TestRoleHandoffPreview(unittest.TestCase):
                 output,
             )
             self.assertIn(
-                "Revisions: Head c700fcd16091e946246694565d1a5f55fdd3ad1e | Base 3c231c1ab67c2b94b7aef76c536e8ca83a5810f3 | Default 91d72bc015559b2268abb7b9b3a033c9f63bad05",
+                "Revisions: Head 1111111111111111111111111111111111111111 | Base 2222222222222222222222222222222222222222 | Default 3333333333333333333333333333333333333333",
                 output,
             )
             self.assertIn(

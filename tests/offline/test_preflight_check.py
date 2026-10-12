@@ -13,7 +13,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
-REPO_ROOT = Path(__file__).resolve().parent.parent
+REPO_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO_ROOT / "tooling" / "offline"))
 
 import preflight_check
@@ -160,7 +160,7 @@ class TestPreflightCheck(unittest.TestCase):
         self.assertEqual(ret, 1)
         output = stdout.getvalue()
         self.assertIn("Scope check:   FAIL", output)
-        self.assertIn("contains whitespace or prose", output)
+        self.assertIn("entry in '### Allowed paths' contains whitespace or prose", output)
         self.assertIn("Overall:       FAIL", output)
         self.assertIn(preflight_check.NOT_VERIFIED_NOTICE, output)
 

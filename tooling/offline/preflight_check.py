@@ -78,17 +78,17 @@ class PreflightResult:
         return self.scope_valid and self.hygiene_valid
 
 
-def sanitize_contract_error(err: str) -> str:
-    """Sanitizes raw ContractParseError strings into bounded diagnostics without leaking free text."""
-    low = err.lower()
+def sanitize_contract_error(err_msg: str) -> str:
+    """Sanitizes ContractParseError messages to avoid echoing raw input or secrets."""
+    low = err_msg.lower()
     if "whitespace or prose" in low:
-        return "Contract format error: entry contains whitespace or prose."
-    if "absolute path" in low:
-        return "Contract format error: absolute paths starting with '/' are not permitted."
-    if "path traversal" in low:
-        return "Contract format error: path traversal '../' is not permitted."
+        return "Contract format error: entry in '### Allowed paths' contains whitespace or prose."
     if "drive letters" in low or "backslashes" in low:
-        return "Contract format error: Windows drive letters and backslashes are not permitted. Use forward slashes."
+        return "Contract format error: entry contains Windows drive letters or backslashes (use forward slashes)."
+    if "path traversal" in low or "../" in low:
+        return "Contract format error: entry contains path traversal ('../')."
+    if "absolute path" in low or "starting with '/'" in low:
+        return "Contract format error: entry contains absolute path starting with '/'."
     if "loose opt-out synonym" in low:
         return "Contract format error: entry uses a loose synonym instead of standalone 'Unconstrained'."
     if "mixed 'unconstrained'" in low:
