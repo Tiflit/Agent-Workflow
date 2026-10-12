@@ -6,7 +6,7 @@
 
 Agent-Workflow provides a lightweight, human-governed operational framework for collaborative development with AI agents. It prioritizes cooperative safety, truthful evidence tracking, and strict scope control without heavyweight automation frameworks or proprietary tooling.
 
-By default, the workflow operates with **one active agent** under explicit human direction. The developer chooses tools, models, local directories, and cloud resources.
+By default, the workflow operates with **one active agent** under explicit human direction. The developer chooses tools, models, local directories, and cloud resources. The repository provides manual starter templates alongside an optional offline preflight and role-preview toolkit ([`tooling/offline/README.md`](tooling/offline/README.md)); using the toolkit is strictly opt-in and does not alter the core eight-document adoption path.
 
 ## Core Principles
 
@@ -32,7 +32,7 @@ For a detailed step-by-step guide on Windows PowerShell, see [`docs/WINDOWS-FIRS
 
 ## Candidate Limitations
 
-- Provides documentation templates only; contains no automated CI enforcement or autonomous supervisor scripts.
+- Provides a manual starter template with an optional offline preflight and role-preview toolkit ([`tooling/offline/README.md`](tooling/offline/README.md)); contains no autonomous supervisor, dispatch automation, agent synchronization, or validated execution sandboxes. Repository cloud CI exercises offline toolkit fixtures only, distinguishing fixture verification from enforced task, merge, or authority gates.
 - Multi-agent peer review is optional; read-only reviewers may use an explicit human-relay variant (see [`docs/PROFILES.md`](docs/PROFILES.md)).
 - Usability on arbitrary external projects is largely untested; users must adapt paths and checklists. Initial Windows onboarding and a single-file documentation task were demonstrated in an assisted usability trial ([Issue #3](https://github.com/Tiflit/Agent-Workflow/issues/3#issuecomment-6103291947); see [`docs/WINDOWS-FIRST-RUN.md`](docs/WINDOWS-FIRST-RUN.md)). Unassisted clone-and-start usability, automated enforcement, and arbitrary project portability remain untested.
 
@@ -46,3 +46,4 @@ For a detailed step-by-step guide on Windows PowerShell, see [`docs/WINDOWS-FIRS
 - [`docs/CLAIMS.md`](docs/CLAIMS.md): Evidentiary claims boundaries and reference limits.
 - [`docs/PROFILES.md`](docs/PROFILES.md): Operational modes (Manual Default vs. Multi-Agent Relay).
 - [`SECURITY.md`](SECURITY.md): Privacy and vulnerability reporting practices.
+- [`tooling/offline/README.md`](tooling/offline/README.md): Optional offline preflight and role-preview toolkit documentation.
