@@ -341,7 +341,7 @@ class TestCleanBootstrap(unittest.TestCase):
         ])
         self.assertEqual(proc.returncode, 0, f"Stderr: {proc.stderr}")
         self.assertIn("Scope check:   PASS", proc.stdout)
-        self.assertIn("PR hygiene check: PASS", proc.stdout)
+        self.assertIn("PR hygiene:    PASS", proc.stdout)
         self.assertIn("NOT VERIFIED: Authority/approval", proc.stdout)
 
     def test_renamed_old_path_outside_scope_fails_without_leaking_raw_filename(self) -> None:
@@ -372,7 +372,7 @@ class TestCleanBootstrap(unittest.TestCase):
             "--files-json", "fixtures/valid_files.json",
         ])
         self.assertEqual(proc.returncode, 1)
-        self.assertIn("PR hygiene check: FAIL", proc.stdout)
+        self.assertIn("PR hygiene:    FAIL", proc.stdout)
         self.assertIn(
             "Hygiene error: missing required section heading '## Documentation'.",
             proc.stdout,
