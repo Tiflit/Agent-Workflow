@@ -25,3 +25,6 @@ jobs:
 
       - name: Run offline regression fixtures
         run: python -m unittest discover -s tests/offline -p 'test_*.py' -v
+
+      - name: Run clean project bootstrap fixtures
+        run: python -m unittest discover -s tests/bootstrap -p 'test_*.py' -v
