@@ -22,6 +22,7 @@ STARTER_FILES = [
     "REGISTER.md",
     "SECURITY.md",
     "docs/CLAIMS.md",
+    "docs/CLEAN-BOOTSTRAP-TRIAL.md",
     "docs/PROFILES.md",
     "docs/RECORDS.md",
     "docs/WINDOWS-FIRST-RUN.md",
@@ -295,7 +296,7 @@ class TestCleanBootstrap(unittest.TestCase):
 
     def test_copied_starter_and_toolkit_layout_and_relative_links(self) -> None:
         """Verifies copied files exist and internal relative documentation links resolve."""
-        # 1. Assert all 15 starter and toolkit files exist
+        # 1. Assert all 16 starter, trial, and toolkit files exist
         for rel_path in STARTER_FILES:
             target_path = self.project_root / rel_path
             self.assertTrue(target_path.is_file(), f"Missing copied file: {rel_path}")
