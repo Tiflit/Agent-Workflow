@@ -34,7 +34,7 @@ For a detailed step-by-step guide on Windows PowerShell, see [`docs/WINDOWS-FIRS
 
 - Provides a manual starter template with an optional offline preflight and role-preview toolkit ([`tooling/offline/README.md`](tooling/offline/README.md)); contains no autonomous supervisor, dispatch automation, agent synchronization, or validated execution sandboxes. Repository cloud CI exercises offline toolkit fixtures only, distinguishing fixture verification from enforced task, merge, or authority gates.
 - Multi-agent peer review is optional; read-only reviewers may use an explicit human-relay variant (see [`docs/PROFILES.md`](docs/PROFILES.md)).
-- Usability on arbitrary external projects is largely untested; users must adapt paths and checklists. Initial Windows onboarding and a single-file documentation task were demonstrated in an assisted usability trial ([Issue #3](https://github.com/Tiflit/Agent-Workflow/issues/3#issuecomment-6103291947); see [`docs/WINDOWS-FIRST-RUN.md`](docs/WINDOWS-FIRST-RUN.md)). Unassisted clone-and-start usability, automated enforcement, and arbitrary project portability remain untested.
+- Usability on arbitrary external projects is largely untested; users must adapt paths and checklists. Assisted onboarding was demonstrated in [Issue #3](https://github.com/Tiflit/Agent-Workflow/issues/3#issuecomment-6103291947) (see [`docs/WINDOWS-FIRST-RUN.md`](docs/WINDOWS-FIRST-RUN.md)). Clean copied-project layout and CLI portability were demonstrated across 7 bootstrap tests in [`docs/CLEAN-BOOTSTRAP-TRIAL.md`](docs/CLEAN-BOOTSTRAP-TRIAL.md) ([PR #11](https://github.com/Tiflit/Agent-Workflow/pull/11#issuecomment-6136015866)), and fresh-session read-only navigation was demonstrated as human-relayed and source-adjudicated without blocking navigation defects in [Issue #12](https://github.com/Tiflit/Agent-Workflow/issues/12#issuecomment-6136188844) (without independent agent context-isolation proof). Manual human relay remains the operating mode; autonomous dispatch, unassisted full adoption, automated enforcement, and adopted upstream sync remain unshown and untested.
 
 ## Document Index
 
@@ -42,6 +42,7 @@ For a detailed step-by-step guide on Windows PowerShell, see [`docs/WINDOWS-FIRS
 - [`REGISTER.md`](REGISTER.md): Deployment settings, identities, and boundaries.
 - [`AGENTS.md`](AGENTS.md): Operational orientation and dispatch protocols.
 - [`docs/WINDOWS-FIRST-RUN.md`](docs/WINDOWS-FIRST-RUN.md): Step-by-step Windows onboarding recipe and publication practices.
+- [`docs/CLEAN-BOOTSTRAP-TRIAL.md`](docs/CLEAN-BOOTSTRAP-TRIAL.md): Clean-project bootstrap trial and offline toolkit portability evidence.
 - [`docs/RECORDS.md`](docs/RECORDS.md): Schemas for contracts, checkpoints, and reviews.
 - [`docs/CLAIMS.md`](docs/CLAIMS.md): Evidentiary claims boundaries and reference limits.
 - [`docs/PROFILES.md`](docs/PROFILES.md): Operational modes (Manual Default vs. Multi-Agent Relay).

@@ -41,6 +41,7 @@ Evidence-Outcome: <Pass | Fail | AttentionRequired | None>
 - **Verified Revision & Point-in-Time Evidence**: `Verified-Revision` records only a verified commit SHA or `Unverified`. When `Unverified`, associated fields record `None` or `Unavailable` if uninspected, or actual inspected/executed findings without implying the head is verified.
 - **Local vs. Pushed Durability**: Local commits survive conversation loss on intact storage; pushing adds remote durability. Neither guarantees recovery from arbitrary hardware loss.
 - **Natural Checkpoint Boundaries**: Commit and checkpoint at logical unit completions or upon approaching context limits.
+- **External Adoption Checkpoints**: For an example initial adoption-checkpoint record, see [`docs/WINDOWS-FIRST-RUN.md` Section 5](WINDOWS-FIRST-RUN.md#5-publishing-checkpoints-without-shell-quoting-corruption).
 
 ## 4. Review & Observation Format (Review Comment)
 Word budget: `<= 250 words`.
